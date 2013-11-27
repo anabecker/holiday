@@ -5,39 +5,12 @@
         <title>Happy Holidays</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="jquery-ui-1.10.3.custom.min.js"></script>
         <script src="holiday.js"></script>
         <script type="text/javascript">
                 //we gonna make the lights so twinkley
             $(document).ready(function(){                            
-
-                //what size be the litebrite?
-                wrapperSize();
-                //when the window resizes, make sure the wrapper resizes    
-                $(window).resize(function(){
-                    wrapperSize();
-                });
-
-                //make the wrapper always square
-                function wrapperSize(){
-                    //get the window height & width
-                    var height = $(window).height();
-                    var width = $(window).width();
-                    console.log(height);
-                    //if height is less, make the width&height of wrapper div the height value
-                    if(height<width){
-                    $('.wrapper').css({
-                        "height": height,
-                        "width": height
-                        });
-                    }else{
-                    //or if the width is less, make the width&height both the width
-                        $('.wrapper').css({
-                        "height": width,
-                        "width": width
-                        });
-                    }
-                }
                             
             });
         </script>

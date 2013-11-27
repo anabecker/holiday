@@ -3,6 +3,7 @@ $(document).ready(function() {
 
     //what size be the litebrite?
     wrapperSize();
+    wrapperOn();
     //when the window resizes, make sure the wrapper resizes    
     $(window).resize(function(){
         wrapperSize();
@@ -27,6 +28,13 @@ $(document).ready(function() {
             "width": width
             });
         }
+    }
+
+    //turn on dat litebrite
+    function wrapperOn(){
+        $('.wrapper').delay(400).animate({
+            opacity: 1
+        }, 1000);
     }
 
     //oh my goodness, happy holidays array
@@ -90,15 +98,15 @@ $(document).ready(function() {
         //cycle through the colors
         if(color == "white"){
             console.log("hola");
-            $(this).removeClass('on').addClass('red').data("color","red");
+            $(this).switchClass('on', 'red', 500).data("color","red");
         }else if(color == "red"){
-            $(this).removeClass('red').addClass('green').data("color","green");
+            $(this).switchClass('red', 'green', 500).data("color","green");
         }else if(color == "green"){
-            $(this).removeClass('green').addClass('blue').data("color","blue");
+            $(this).switchClass('green', 'blue', 500).data("color","blue");
         }else if(color == "blue"){
-            $(this).removeClass('blue').data("color","black");
+            $(this).removeClass('blue', 500).data("color","black");
         }else{
-            $(this).addClass('on').data("color","white");
+            $(this).addClass('on', 500).data("color","white");
         }
     });
 });

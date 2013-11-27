@@ -4,7 +4,12 @@ html{
 
 body{
 	background-color:#000;
+/*  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;*/
 }
+
 .wrapper{
 	width: 800px;
 	height: 800px;
@@ -12,6 +17,7 @@ body{
 	position: relative;
 	margin: 0 auto;
 	margin-top:100px;
+	opacity: 0.3;
 }
 .pixel{
     background-color: #000;
@@ -21,7 +27,6 @@ body{
     border-radius: 50%;
     box-sizing:border-box;
     padding:4px;
-    opacity: 0;
     }
 
 .on{
