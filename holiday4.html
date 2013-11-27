@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+ 
+<html>
+    <head>
+        <title>Happy Holidays</title>
+        <meta charset="utf-8">
+ 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+ 
+        <script>
+            $(document).ready(function() {
+                var canvas = document.getElementById("myCanvas");
+                var ctx = canvas.getContext("2d");
+
+                var image = new Image();
+
+                image.crossOrigin="anonymous";
+                image.src = "https://photos-3.dropbox.com/t/0/AAAu62sn0Uzytpqkda0te3GiLF7uqGf2G140KxvgL5hdwQ/12/39990477/png/1024x768/3/1385521200/0/2/holidays2.png/uss5ZYYuPnsju9cmvF_LM4qADaCn_Ls8_hx09asb9ew";
+                $(image).load(function(){
+                    ctx.drawImage(image, 0, 0);
+                });
+
+
+            $(canvas).click(function(e){
+                var canvasOffset = $(canvas).offset();
+                var canvasX = Math.floor(e.pageX-canvasOffset.left);
+                var canvasY = Math.floor(e.pageY-canvasOffset.top);
+
+                var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                var pixels = imageData.data;
+                // var pixelRedIndex = ((canvasY - 1) * (imageData.width * 4)) + ((canvasX - 1) * 4);
+
+                pixelBW = [];
+                pixelW = [];
+
+                for (var i = 0; i <= pixels.length; i++){
+                    if(i % 4 === 0){
+                        pixelBW.push(pixels[i]);
+                        // console.log('sup');
+                    }
+                }
+
+                for (var j = 0; j <= pixelBW.length; j++){
+                    if(pixelBW[j] === 255){
+                        pixelW.push(j);
+                        $('.numbers').append(j +", ")
+                    }
+                }
+
+                console.log(pixelBW);
+                console.log(pixelW);
+
+                // var test = 5 % 4;
+                // console.log('test is '+ test);
+                // console.log(pixels.length);
+
+                // console.log(pixelRedIndex);
+                // var pixelcolor = "rgba("+pixels[pixelRedIndex]+", "+pixels[pixelRedIndex+1]+", "+pixels[pixelRedIndex+2]+", "+pixels[pixelRedIndex+3]+")";
+                })
+            });
+        </script>
+    </head>
+ 
+    <body>
+        <canvas id="myCanvas" width="100" height="100">
+            <!-- Insert fallback content here -->
+        </canvas>
+        <div class="numbers">
+            
+        </div>
+<!--         <img src="https://photos-3.dropbox.com/t/0/AAAu62sn0Uzytpqkda0te3GiLF7uqGf2G140KxvgL5hdwQ/12/39990477/png/1024x768/3/1385521200/0/2/holidays2.png/uss5ZYYuPnsju9cmvF_LM4qADaCn_Ls8_hx09asb9ew"> -->
+    </body>
+</html>
