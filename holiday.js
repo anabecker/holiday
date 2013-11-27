@@ -47,7 +47,7 @@ $(document).ready(function() {
     // turn on the lights turn on the liiiiiights
     for (var i = 0; i<= holidays.length; i++){
         var light = holidays[i];
-        $('.'+light).addClass('on').data("color","white").attr("data-stellar-ratio","1.5");
+        $('.'+light).addClass('on').data("color","white");
     }
 
     //how many lights start out white?
@@ -57,7 +57,7 @@ $(document).ready(function() {
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
         //add class on, and add data attribute for the color
-        $('a.'+randomValue).addClass('on').data("color","white").attr("data-stellar-ratio","1.5");
+        $('a.'+randomValue).addClass('on').data("color","white");
     }
 
     var red = 50;
@@ -65,7 +65,7 @@ $(document).ready(function() {
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
         console.log(randomValue);
-        $('a.'+randomValue).addClass('red').data("color","red").attr("data-stellar-ratio","1.3");
+        $('a.'+randomValue).addClass('red').data("color","red");
     }
 
     var green = 20;
@@ -73,7 +73,7 @@ $(document).ready(function() {
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
         console.log(randomValue);
-        $('a.'+randomValue).addClass('green').data("color","green").attr("data-stellar-ratio","1");
+        $('a.'+randomValue).addClass('green').data("color","green");
     }
 
     var blue = 20;
@@ -81,7 +81,7 @@ $(document).ready(function() {
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
         console.log(randomValue);
-        $('a.'+randomValue).addClass('blue').data("color","blue").attr("data-stellar-ratio","0.5");
+        $('a.'+randomValue).addClass('blue').data("color","blue");
     }
 
     //when you click on a light...
