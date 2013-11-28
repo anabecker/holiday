@@ -32,9 +32,11 @@ $(document).ready(function() {
 
     //turn on dat litebrite
     function wrapperOn(){
-        $('.wrapper').delay(400).animate({
+        $('.wrapper').delay(1000).animate({
             opacity: 1
-        }, 1000);
+        }, 1000, function(){
+            twinkleTime();
+        });
     }
 
     //oh my goodness, happy holidays array
@@ -55,17 +57,17 @@ $(document).ready(function() {
     // turn on the lights turn on the liiiiiights
     for (var i = 0; i<= holidays.length; i++){
         var light = holidays[i];
-        $('.'+light).addClass('on').data("color","white");
+        $('.'+light).addClass('white letters').data("color","white");
     }
 
     //how many lights start out white?
-    var on = 50;
+    var white = 50;
     // turn on some random lights
-    for (var j = 0; j<= on; j++){
+    for (var j = 0; j<= white; j++){
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
         //add class on, and add data attribute for the color
-        $('a.'+randomValue).addClass('on').data("color","white");
+        $('a.'+randomValue).addClass('white on').data("color","white");
     }
 
     var red = 50;
@@ -73,7 +75,7 @@ $(document).ready(function() {
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
         console.log(randomValue);
-        $('a.'+randomValue).addClass('red').data("color","red");
+        $('a.'+randomValue).addClass('red on').data("color","red");
     }
 
     var green = 20;
@@ -81,7 +83,7 @@ $(document).ready(function() {
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
         console.log(randomValue);
-        $('a.'+randomValue).addClass('green').data("color","green");
+        $('a.'+randomValue).addClass('green on').data("color","green");
     }
 
     var blue = 20;
@@ -89,25 +91,115 @@ $(document).ready(function() {
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
         console.log(randomValue);
-        $('a.'+randomValue).addClass('blue').data("color","blue");
+        $('a.'+randomValue).addClass('blue on').data("color","blue");
+    }
+
+    //lights gonna be so twinkly
+
+    //all the lights that are on
+    var lightsOn = $('.on');
+    //make an array of the indexes of the on lights
+    var someLights = [];
+
+    //each light that is on, push its index to the someLights array
+    lightsOn.each(function(){
+        var index = $(this).index();
+        someLights.push(index);
+    });
+
+    // zomg fisher-yates
+    function shuffle(array) {
+        var m = array.length, t, i;
+
+        // While there remain elements to shuffle…
+        while (m) {
+
+        // Pick a remaining element…
+        i = Math.floor(Math.random() * m--);
+
+        // And swap it with the current element.
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+        }
+        return array;
+    }
+
+
+    function twinkle(){
+        // //how many twinkle?
+        var twinkleNum = 50;
+
+        for(var i=0; i<=twinkleNum; i++) {
+            var r = Math.floor(Math.random() * lightsOn.length);
+
+            var light = $(lightsOn[r]);
+            // light.addClass('twinkling').delay(500).removeClass('twinkling');
+            // var time = Math.floor(Math.random() * 1000 + 300);
+
+            // light.addClass('twinkling');
+            
+            light.animate({"opacity":"0.5"}, 1000, function(){
+                $(this).animate({"opacity":"1"}, 1500);
+            });
+
+            // setInterval(function(){
+            //     light.removeClass('twinkling');
+            //    }, 100);
+           }
+        //how many twinkle?
+        // var twinkleNum = 100;
+
+        //pick some random lights
+        // var twinklers = shuffle(someLights).slice(0, twinkleNum);
+        // //make each one twinkle
+        // for(var m = 0; m<= twinkleNum; m++){
+        //     var twinklette = twinklers[m];
+        //     $('.'+twinklette).toggleClass('twinkling').delay(500).toggleClass('twinkling', 700);
+
+        // }
+        // x++;
+        // console.log(x);
+        // if(x < 10){
+        //     twinkle();
+        // }
+    }
+
+    var x = 0
+
+    function twinkleTime(){
+        var twinkleNow = setInterval(function(){
+
+            twinkle();
+            x++;
+            console.log(x);
+
+            if (x === 10) {
+            window.clearInterval(twinkleNow);
+            }
+        }, 1000);
     }
 
     //when you click on a light...
+
     $('.pixel').click(function(){
         var color = $(this).data("color");
         //cycle through the colors
         if(color == "white"){
             console.log("hola");
-            $(this).switchClass('on', 'red', 500).data("color","red");
+            $(this).switchClass('white', 'red').data("color","red").addClass('on');
         }else if(color == "red"){
-            $(this).switchClass('red', 'green', 500).data("color","green");
+            $(this).switchClass('red', 'green').data("color","green");
         }else if(color == "green"){
-            $(this).switchClass('green', 'blue', 500).data("color","blue");
+            $(this).switchClass('green', 'blue').data("color","blue");
         }else if(color == "blue"){
-            $(this).removeClass('blue', 500).data("color","black");
+            $(this).removeClass('blue').data("color","black");
         }else{
-            $(this).addClass('on', 500).data("color","white");
+            $(this).addClass('white').data("color","white");
         }
+
+        twinkle();
     });
+
 });
 
