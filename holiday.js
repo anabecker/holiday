@@ -35,7 +35,8 @@ $(document).ready(function() {
         $('.wrapper').delay(1000).animate({
             opacity: 1
         }, 1000, function(){
-            twinkleTime();
+            letterTime(0);
+            twinkleTime(0);
         });
     }
 
@@ -59,6 +60,25 @@ $(document).ready(function() {
         var light = holidays[i];
         $('.'+light).addClass('white letters').data("color","white");
     }
+
+
+    //ok a little bit slower now
+    function lettersOn(){
+        // //how many at a time?
+        var lettersNum = letters.length;
+
+        for(var i=0; i<=lettersNum; i++) {
+        var r = Math.floor(Math.random() * lettersNum);
+
+            var letter = $(letters[r]);
+            // light.addClass('twinkling').delay(500).removeClass('twinkling');
+            // var time = Math.floor(Math.random() * 1000 + 300);
+
+            // light.addClass('twinkling');           
+            letter.animate({"opacity":"1"}, 300);
+           }
+        }
+
 
     //how many lights start out white?
     var white = 50;
@@ -98,6 +118,7 @@ $(document).ready(function() {
 
     //all the lights that are on
     var lightsOn = $('.on');
+    var letters = $('.letters');
     //make an array of the indexes of the on lights
     var someLights = [];
 
@@ -139,7 +160,7 @@ $(document).ready(function() {
 
             // light.addClass('twinkling');
             
-            light.animate({"opacity":"0.5"}, 1000, function(){
+            light.animate({"opacity":"0.2"}, 1000, function(){
                 $(this).animate({"opacity":"1"}, 1500);
             });
 
@@ -165,19 +186,31 @@ $(document).ready(function() {
         // }
     }
 
-    var x = 0
+    // var x = 0
 
-    function twinkleTime(){
+    function twinkleTime(x){
         var twinkleNow = setInterval(function(){
 
             twinkle();
             x++;
             console.log(x);
 
-            if (x === 10) {
+            if (x >= 10) {
             window.clearInterval(twinkleNow);
             }
         }, 1000);
+    }
+
+    function letterTime(y){
+        var letterNow = setInterval(function(){
+
+            lettersOn();
+            y++;
+
+            if (y >= 5) {
+            window.clearInterval(letterNow);
+            }
+        }, 10);
     }
 
     //when you click on a light...
@@ -187,7 +220,7 @@ $(document).ready(function() {
         //cycle through the colors
         if(color == "white"){
             console.log("hola");
-            $(this).switchClass('white', 'red').data("color","red").addClass('on');
+            $(this).switchClass('white', 'red').data("color","red");
         }else if(color == "red"){
             $(this).switchClass('red', 'green').data("color","green");
         }else if(color == "green"){
@@ -198,7 +231,7 @@ $(document).ready(function() {
             $(this).addClass('white').data("color","white");
         }
 
-        twinkle();
+        twinkleTime(0);
     });
 
 });
