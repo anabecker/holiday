@@ -13,30 +13,37 @@ $(document).ready(function() {
     function wrapperSize(){
         //get the window height & width
         var height = $(window).height();
+
+        //wtf older webkit browsers don't support subpixel rendering always? annoyingsauce.
+        //make the height & width always a multiple of 100px so that the 1% sized lights render right
+        var heightRound = Math.floor(height/100)*100;
+        console.log(heightRound);
+
         var width = $(window).width();
-        console.log(height);
+        var widthRound = Math.floor(width/100)*100;
+
         //if height is less, make the width&height of wrapper div the height value
         if(height<width){
         $('.wrapper').css({
-            "height": height,
-            "width": height
+            "height": heightRound,
+            "width": heightRound
             });
         }else{
         //or if the width is less, make the width&height both the width
             $('.wrapper').css({
-            "height": width,
-            "width": width
+            "height": widthRound,
+            "width": widthRound
             });
         }
     }
 
     //turn on dat litebrite
     function wrapperOn(){
-        $('.wrapper').delay(1000).animate({
+        $('.wrapper').delay(500).animate({
             opacity: 1
-        }, 1000, function(){
-            letterTime(0);
+        }, 500, function(){
             twinkleTime(0);
+            letterTime(0);
         });
     }
 
@@ -62,22 +69,29 @@ $(document).ready(function() {
     }
 
 
+    var letters = $('.letters');
+    var startNum = 50;
+    console.log(startNum);
+
     //ok a little bit slower now
     function lettersOn(){
         // //how many at a time?
         var lettersNum = letters.length;
 
-        for(var i=0; i<=lettersNum; i++) {
+        for(var i=0; i<=startNum; i++) {
+
+        // pick a random letter
         var r = Math.floor(Math.random() * lettersNum);
 
-            var letter = $(letters[r]);
-            // light.addClass('twinkling').delay(500).removeClass('twinkling');
-            // var time = Math.floor(Math.random() * 1000 + 300);
+        //get those letters
+        var letter = $(letters[r]);
 
-            // light.addClass('twinkling');           
-            letter.animate({"opacity":"1"}, 300);
-           }
+        //turn em on
+        letter.animate({"opacity":"1"}, 500);
         }
+        startNum = startNum + 50;
+        console.log(startNum);
+    }
 
 
     //how many lights start out white?
@@ -90,35 +104,35 @@ $(document).ready(function() {
         $('a.'+randomValue).addClass('white on').data("color","white");
     }
 
+    //red
     var red = 50;
     for (var k = 0; k<= red; k++){
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
-        console.log(randomValue);
         $('a.'+randomValue).addClass('red on').data("color","red");
     }
 
+    //green
     var green = 20;
     for (var k = 0; k<= green; k++){
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
-        console.log(randomValue);
         $('a.'+randomValue).addClass('green on').data("color","green");
     }
 
+    //blue THIS IS SO NOT DRY
     var blue = 20;
     for (var l = 0; l<= blue; l++){
         var randomKey = Math.floor(Math.random() * list.length);
         var randomValue = list[randomKey];
-        console.log(randomValue);
         $('a.'+randomValue).addClass('blue on').data("color","blue");
     }
+
 
     //lights gonna be so twinkly
 
     //all the lights that are on
     var lightsOn = $('.on');
-    var letters = $('.letters');
     //make an array of the indexes of the on lights
     var someLights = [];
 
@@ -157,7 +171,6 @@ $(document).ready(function() {
             var light = $(lightsOn[r]);
             // light.addClass('twinkling').delay(500).removeClass('twinkling');
             // var time = Math.floor(Math.random() * 1000 + 300);
-
             // light.addClass('twinkling');
             
             light.animate({"opacity":"0.2"}, 1000, function(){
@@ -188,6 +201,8 @@ $(document).ready(function() {
 
     // var x = 0
 
+
+    //twinkle ten times
     function twinkleTime(x){
         var twinkleNow = setInterval(function(){
 
@@ -195,22 +210,23 @@ $(document).ready(function() {
             x++;
             console.log(x);
 
-            if (x >= 10) {
+            if (x >= 5) {
             window.clearInterval(twinkleNow);
             }
         }, 1000);
     }
 
+
+    //turn random letter lights on 5x, then just turn all of the rest on
     function letterTime(y){
         var letterNow = setInterval(function(){
-
             lettersOn();
             y++;
-
             if (y >= 5) {
-            window.clearInterval(letterNow);
+                window.clearInterval(letterNow);
+                letters.animate({"opacity":"1"}, 500);
             }
-        }, 10);
+        }, 300);
     }
 
     //when you click on a light...
@@ -218,6 +234,8 @@ $(document).ready(function() {
     $('.pixel').click(function(){
         var color = $(this).data("color");
         //cycle through the colors
+        $(this).addClass("clicked on");
+
         if(color == "white"){
             console.log("hola");
             $(this).switchClass('white', 'red').data("color","red");
@@ -231,8 +249,12 @@ $(document).ready(function() {
             $(this).addClass('white').data("color","white");
         }
 
-        twinkleTime(0);
+        twinkleTime(4);
     });
 
+    letters.click(function(){
+        letters.animate({"opacity":"0.2"}, 500);
+        letterTime(3);
+    })    
 });
 
