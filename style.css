@@ -241,6 +241,7 @@ a{
 	color:#fff;
 	text-shadow: 0px 0px 10px #fff;
 	color:rgba(256,256,256,1);
+	cursor: pointer;
 }
 
 .blue-text{

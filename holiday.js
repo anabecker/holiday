@@ -41,7 +41,7 @@ $(document).ready(function() {
     function wrapperOn(){
         $('.wrapper').delay(500).animate({
             opacity: 1
-        }, function(){
+        }, 1000, function(){
             // twinkleTime(0);
             letterTime(0);
         });
@@ -240,6 +240,10 @@ $(document).ready(function() {
     letters.click(function(){
         letters.css({"opacity":"0.2"});
         letterTime(0);
-    })    
+    })  
+
+    $('.salutation .white-text').click(function(){
+        twinkleTime(0);
+    });
 });
 
