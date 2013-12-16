@@ -1,3 +1,59 @@
+
+@import url(http://fonts.googleapis.com/css?family=Lora:400,700italic);
+
+
+/*reset*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a{
+	text-decoration: none;
+}
+
+/*end reset*/
+
 html{
 	background: #000;
 }
@@ -8,6 +64,9 @@ body{
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;*/
+font-family: 'Lora', serif;
+font-style: italic;
+color: #fff;
 }
 
 *, *:before, *:after {
@@ -35,6 +94,13 @@ body{
   transition: all 0.3s ease-in-out;
 }
 
+.animate-so-slow{
+	  -webkit-transition: all 2s ease-in-out;
+  -moz-transition: all 2s ease-in-out;
+  -o-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;
+}
+
 .wrapper{
 	width: 800px;
 	height: 800px;
@@ -51,7 +117,7 @@ body{
     border-radius: 50%;
     box-sizing:border-box;
     padding:.04%;
-    opacity:0.3;
+    opacity:0.2;
     }
 
 .white{
@@ -137,3 +203,57 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6bd7ea', end
 .clicked{
 	opacity:1;
 }
+
+
+.salutation{
+	width: 50%;
+	margin: 1em auto;
+	opacity: 0;
+
+}
+
+p{
+	font-size:1em;
+	line-height: 1.5em;
+	font-style: italic;
+	margin-bottom:0.5em;
+	text-align: center;
+	color:rgba(256,256,256,0.5);
+}
+
+a{
+	font-family: helvetica, sans-serif;
+	font-style: normal;
+	font-size:0.8em;
+}
+
+.red-text{
+	color: #ff0000;
+	text-shadow: 0px 0px 20px #ff0000;
+}
+
+.green-text{
+	color:#2c4c00;
+	text-shadow: 0px 0px 10px #2c4c00;
+}
+
+.white-text{
+	color:#fff;
+	text-shadow: 0px 0px 10px #fff;
+	color:rgba(256,256,256,1);
+}
+
+.blue-text{
+	color:#43a8fc;
+	text-shadow: 0px 0px 10px #43a8fc;
+}
+
+
+.ifmobile{
+	margin-bottom: 1em;
+}
+
+
+
+
+

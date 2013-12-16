@@ -14,14 +14,41 @@
                             
             });
         </script>
+
+        <style type="text/css">
+    @media all and (max-width: 568px){
+          div.wrapper {
+            display: none;
+          }
+         .ifmobile img{
+            width: 100%;
+            height: auto;
+         } 
+        }
+    @media all and (min-width: 569px){
+          div.ifmobile {
+            display: none;
+          }
+        }
+
+        </style>
     </head>
  
     <body>
+    <div class="ifmobile">
+        <p>
+            Oh <span class="white-text">hi,</span> ye of small screen.
+        </p>
+        <p>
+            This will look much nicer in your desktop browser.
+        </p>
+        <img src="bkgd.png" alt="">
+    </div>
     <div class="wrapper animate">        
     </div>
-    <div class="salutation">
-                <p>May your lites be brite this holiday season</p>
-    <p><a href="http://www.anabeckerdesign.com">from Ana Becker Design</a></p>
+    <div class="salutation animate-so-slow">
+                <p>May your <span class="white-text">lites</span> be <span class="white-text">brite</span> this holiday season</p>
+    <p>from <a class="blue-text" href="http://www.anabeckerdesign.com" target="_blank">Ana Becker Design</a></p>
     </div>
     </body>
 </html>
