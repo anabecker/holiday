@@ -70,11 +70,11 @@ $(document).ready(function() {
 
 
     var letters = $('.letters');
-    // var startNum = 25;
+    var startNum = 50;
     console.log(startNum);
 
     //ok a little bit slower now
-    function lettersOn(startNum){
+    function lettersOn(){
         // //how many at a time?
         var lettersNum = letters.length;
 
