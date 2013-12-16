@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+//some variables
+var wrapper = $('.wrapper');
 
     //what size be the litebrite?
     wrapperSize();
@@ -21,16 +23,15 @@ $(document).ready(function() {
 
         var width = $(window).width();
         var widthRound = Math.floor(width/100)*100;
-
         //if height is less, make the width&height of wrapper div the height value
         if(height<width){
-        $('.wrapper').css({
+        wrapper.css({
             "height": heightRound,
             "width": heightRound
             });
         }else{
         //or if the width is less, make the width&height both the width
-            $('.wrapper').css({
+            wrapper.css({
             "height": widthRound,
             "width": widthRound
             });
@@ -39,9 +40,9 @@ $(document).ready(function() {
 
     //turn on dat litebrite
     function wrapperOn(){
-        $('.wrapper').delay(500).animate({
+        wrapper.delay(500).animate({
             opacity: 1
-        }, 1000, function(){
+        }, function(){
             // twinkleTime(0);
             letterTime(0);
         });
@@ -64,7 +65,7 @@ $(document).ready(function() {
     //make the lights
     for (var i = 0; i <= end; i++){
             list.push(i);
-            $('.wrapper').append("<a class='pixel animate "+i + "'></a>");
+            wrapper.append("<a class='pixel animate "+i + "'></a>");
     }
 
 
@@ -76,8 +77,8 @@ $(document).ready(function() {
 
 
     var letters = $('.letters');
-    var startNum = 100;
-    console.log(startNum);
+    var startNum = 50;
+    // console.log(startNum);
 
     //ok a little bit slower now
     function lettersOn(){
@@ -203,11 +204,11 @@ $(document).ready(function() {
         var letterNow = setInterval(function(){
             lettersOn();
             y++;
-            if (y >= 4) {
+            if (y >= 5) {
                 window.clearInterval(letterNow);
                 letters.css({"opacity":"1"});
             }
-            if (y === 4){
+            if (y === 5){
                 twinkleTime(0);
                 salutations();
             }
