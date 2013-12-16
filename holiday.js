@@ -41,8 +41,8 @@ $(document).ready(function() {
     function wrapperOn(){
         $('.wrapper').delay(500).animate({
             opacity: 1
-        }, 500, function(){
-            twinkleTime(0);
+        }, function(){
+            // twinkleTime(0);
             letterTime(0);
         });
     }
@@ -58,7 +58,7 @@ $(document).ready(function() {
     //make the lights
     for (var i = 0; i <= end; i++){
             list.push(i);
-            $('.wrapper').append("<a class='pixel "+i + "'></a>");
+            $('.wrapper').append("<a class='pixel animate "+i + "'></a>");
     }
 
 
@@ -70,11 +70,11 @@ $(document).ready(function() {
 
 
     var letters = $('.letters');
-    var startNum = 50;
+    // var startNum = 25;
     console.log(startNum);
 
     //ok a little bit slower now
-    function lettersOn(){
+    function lettersOn(startNum){
         // //how many at a time?
         var lettersNum = letters.length;
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
         var letter = $(letters[r]);
 
         //turn em on
-        letter.animate({"opacity":"1"}, 500);
+        letter.css({"opacity":"1"});
         }
         startNum = startNum + 50;
         console.log(startNum);
@@ -163,46 +163,21 @@ $(document).ready(function() {
 
     function twinkle(){
         // //how many twinkle?
-        var twinkleNum = 50;
+        var twinkleNum = 25;
 
         for(var i=0; i<=twinkleNum; i++) {
             var r = Math.floor(Math.random() * lightsOn.length);
 
             var light = $(lightsOn[r]);
-            // light.addClass('twinkling').delay(500).removeClass('twinkling');
-            // var time = Math.floor(Math.random() * 1000 + 300);
-            // light.addClass('twinkling');
             
-            light.animate({"opacity":"0.2"}, 1000, function(){
-                $(this).animate({"opacity":"1"}, 1500);
+            light.animate({"opacity":"0.2"}, function(){
+                $(this).css({"opacity":"1"});
             });
-
-            // setInterval(function(){
-            //     light.removeClass('twinkling');
-            //    }, 100);
            }
-        //how many twinkle?
-        // var twinkleNum = 100;
-
-        //pick some random lights
-        // var twinklers = shuffle(someLights).slice(0, twinkleNum);
-        // //make each one twinkle
-        // for(var m = 0; m<= twinkleNum; m++){
-        //     var twinklette = twinklers[m];
-        //     $('.'+twinklette).toggleClass('twinkling').delay(500).toggleClass('twinkling', 700);
-
-        // }
-        // x++;
-        // console.log(x);
-        // if(x < 10){
-        //     twinkle();
-        // }
     }
 
-    // var x = 0
 
-
-    //twinkle ten times
+    //twinkle 5 times
     function twinkleTime(x){
         var twinkleNow = setInterval(function(){
 
@@ -213,7 +188,7 @@ $(document).ready(function() {
             if (x >= 5) {
             window.clearInterval(twinkleNow);
             }
-        }, 1000);
+        }, 1200);
     }
 
 
@@ -222,11 +197,14 @@ $(document).ready(function() {
         var letterNow = setInterval(function(){
             lettersOn();
             y++;
-            if (y >= 5) {
+            if (y >= 4) {
                 window.clearInterval(letterNow);
-                letters.animate({"opacity":"1"}, 500);
+                letters.css({"opacity":"1"});
             }
-        }, 300);
+            if (y === 4){
+                twinkleTime(0);
+            }
+        }, 800);
     }
 
     //when you click on a light...
@@ -234,7 +212,7 @@ $(document).ready(function() {
     $('.pixel').click(function(){
         var color = $(this).data("color");
         //cycle through the colors
-        $(this).addClass("clicked on");
+        $(this).addClass("animate-fast clicked on");
 
         if(color == "white"){
             console.log("hola");
@@ -249,12 +227,12 @@ $(document).ready(function() {
             $(this).addClass('white').data("color","white");
         }
 
-        twinkleTime(4);
+        // twinkleTime(5);
     });
 
     letters.click(function(){
-        letters.animate({"opacity":"0.2"}, 500);
-        letterTime(3);
+        letters.css({"opacity":"0.2"});
+        letterTime(0);
     })    
 });
 

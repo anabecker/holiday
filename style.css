@@ -15,10 +15,24 @@ body{
  }
 
 .animate{
+  -webkit-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
+}
+
+.animate-slow{
 	-webkit-transition: all 1s ease-in-out;
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;
+}
+
+.animate-fast{
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .wrapper{
@@ -59,6 +73,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfbf4', end
 
 .letters{
 	opacity: 0.2;
+}
+
+.letters.animate{
+	-webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+
 }
 
 .red{
