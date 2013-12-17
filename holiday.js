@@ -1,7 +1,11 @@
 $(document).ready(function() {
 
+//add loaded class to body
+$('body').addClass('loaded');
+
 //some variables
-var wrapper = $('.wrapper');
+var wrapper = $('#wrapper');
+var wrapper2 = document.getElementById("wrapper");
 
     //what size be the litebrite?
     wrapperSize();
@@ -63,9 +67,14 @@ var wrapper = $('.wrapper');
     //light values array
     var list = [];
     //make the lights
+
     for (var i = 0; i <= end; i++){
             list.push(i);
-            wrapper.append("<a class='pixel animate "+i + "'></a>");
+            var a = document.createElement("a");
+            a.className = 'pixel animate '+i
+            // var pixel = "<a class='pixel animate "+i + "'></a>";
+            // wrapper.append(pixel);
+            wrapper2.appendChild(a);
     }
 
 
@@ -224,7 +233,7 @@ var wrapper = $('.wrapper');
 
         if(color == "white"){
             console.log("hola");
-            $(this).switchClass('white', 'red').data("color","red");
+            $(this).removeClass('white').addClass('red').data("color","red");
         }else if(color == "red"){
             $(this).switchClass('red', 'green').data("color","green");
         }else if(color == "green"){

@@ -1,6 +1,6 @@
-
-@import url(http://fonts.googleapis.com/css?family=Lora:400,700italic);
-
+/*
+@import url(http://fonts.googleapis.com/css?family=Lora:700italic);
+*/
 
 /*reset*/
 
@@ -31,7 +31,16 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background: url(bkgd_first.png) no-repeat center center #000;
+	background-size:contain;
+	min-height: 100%;
 }
+
+body.loaded{
+	background: #000;
+	background-image: none;
+}
+
 ol, ul {
 	list-style: none;
 }
@@ -64,10 +73,13 @@ body{
   -moz-transition: all 1s ease-in-out;
   -o-transition: all 1s ease-in-out;
   transition: all 1s ease-in-out;*/
-font-family: 'Lora', serif;
+font-family: 'baskerville', georgia, serif;
 font-style: italic;
+font-weight: bold;
 color: #fff;
 }
+
+
 
 *, *:before, *:after {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
@@ -254,6 +266,26 @@ a{
 	margin-bottom: 1em;
 }
 
+ @media all and (max-device-width: 568px){
+          body{
+            font-size: 36px;
+          }
+          div.wrapper {
+            display: none;
+          }
+         .ifmobile img{
+            width: 100%;
+            height: auto;
+         }
+         .salutation{
+            opacity: 1;
+         } 
+        }
+    @media all and (min-device-width: 569px){
+          div.ifmobile {
+            display: none;
+          }
+        }
 
 
 

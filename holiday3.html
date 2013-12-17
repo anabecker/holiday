@@ -5,36 +5,6 @@
         <title>Happy Holidays</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script type="text/javascript">
-                //we gonna make the lights so twinkley
-            // $(document).ready(function(){                            
-            //     var isDesktop = (function() {
-            //     return !('ontouchstart' in window) || !('onmsgesturechange' in window);
-            //     })();
-            //     window.isDesktop = isDesktop;
-            //     if( isDesktop ){ 
-
-            //      }      
-            //     });
-        </script>
-
-        <style type="text/css">
-    @media all and (max-device-width: 568px){
-          div.wrapper {
-            display: none;
-          }
-         .ifmobile img{
-            width: 100%;
-            height: auto;
-         } 
-        }
-    @media all and (min-device-width: 569px){
-          div.ifmobile {
-            display: none;
-          }
-        }
-
-        </style>
     </head>
  
     <body>
@@ -47,7 +17,7 @@
         </p>
         <img src="bkgd.png" alt="">
     </div>
-    <div class="wrapper animate">        
+    <div id="wrapper" class="wrapper animate">        
     </div>
     <div class="salutation animate-so-slow">
                 <p>May your <span class="white-text">lites</span> be <span class="white-text">brite</span> this holiday season</p>
@@ -55,7 +25,22 @@
     </div>
     </body>
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="jquery-ui.js"></script>
     <script src="holiday.js"></script>
-
+    <script>
+                //we gonna make the lights so twinkley
+            $(document).ready(function(){                            
+                var isDesktop = (function() {
+                return !('ontouchstart' in window) || !('onmsgesturechange' in window);
+                })();
+                window.isDesktop = isDesktop;
+                if( isDesktop ){ 
+                                    $.getScript( "holiday.js", function( data, textStatus, jqxhr ) {
+                console.log( textStatus ); // Success
+                console.log( jqxhr.status ); // 200
+                console.log( "Load was performed." );
+                }); 
+             }      
+            });
+    </script>
 </html>
